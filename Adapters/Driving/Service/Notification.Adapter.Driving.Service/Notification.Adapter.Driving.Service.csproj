@@ -10,4 +10,10 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.0"/>
     </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\..\..\Core\Application\Notification.Application\Notification.Application.csproj" />
+      <ProjectReference Include="..\..\..\Driven\Database\Notification.Adapter.Driven.Database\Notification.Adapter.Driven.Database.csproj" />
+      <ProjectReference Include="..\..\..\Driven\Integrations\Email\Notification.Driven.Integrations.Email\Notification.Driven.Integrations.Email.csproj" />
+    </ItemGroup>
 </Project>

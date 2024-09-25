@@ -13,8 +13,8 @@ public static class NotificationDatabaseDependency
 {
     public static void AddNotificacaoDatabaseModule(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddScoped<IUnitOfWork, UnitOfWorkInstance>();
-        services.AddScoped(sp =>
+        services.AddSingleton<IUnitOfWork, UnitOfWorkInstance>();
+        services.AddSingleton(sp =>
         {
             var connectionString = GetConnectionString(configuration);
             var context = new NotificacaoContext(connectionString);
@@ -25,8 +25,8 @@ public static class NotificationDatabaseDependency
             return context;
         });
 
-        services.AddScoped<INotificacaoRepository, NotificacaoRepository>();
-        services.AddScoped<INotificacaoAuditoriaRepository, NotificacaoAuditoriaRepository>();
+        services.AddSingleton<INotificacaoRepository, NotificacaoRepository>();
+        services.AddSingleton<INotificacaoAuditoriaRepository, NotificacaoAuditoriaRepository>();
     }
 
     private static string? GetConnectionString(IConfiguration configuration)
