@@ -58,7 +58,7 @@ public class Worker : BackgroundService
         }
     }
 
-    private JsonSerializerOptions CriarJsonOptions() => new()
+    private static JsonSerializerOptions CriarJsonOptions() => new()
     {
         PropertyNameCaseInsensitive = true,
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase

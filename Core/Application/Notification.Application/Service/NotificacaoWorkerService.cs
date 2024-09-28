@@ -32,7 +32,7 @@ public class NotificacaoWorkerService : INotificacaoWorkerService
 
         if (template is null)
         {
-            _logger.LogInformation("Template da Notificação {not} não encontrada", message.NotificationId);
+            _logger.LogInformation("Template da Notificação {NotificationId} não encontrada", message.NotificationId);
             return;
         }
 
