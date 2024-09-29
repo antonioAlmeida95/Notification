@@ -40,7 +40,7 @@ public class Worker : BackgroundService
         
         while (!stoppingToken.IsCancellationRequested)
         {
-            Envelope? envelope = null;
+            Envelope? envelope;
             var consumer = new EventingBasicConsumer(channel);
             consumer.Received += async (_, eventArgs) =>
             {
@@ -48,13 +48,13 @@ public class Worker : BackgroundService
                 var message = Encoding.UTF8.GetString(body);
                 var jsonOptions = CriarJsonOptions();
                 envelope = JsonSerializer.Deserialize<Envelope>(message, jsonOptions);
-             
+                
                 await _notificacaoWorkerService.ProcessarMensagemAsync(envelope?.Message);
+                _logger.LogInformation("Processou registro");
+                await Task.Delay(10000, stoppingToken);
             };
             
             channel.BasicConsume(queue: _queueSettings.Name, autoAck: true, consumer: consumer);
-            
-            await Task.Delay(2000, stoppingToken);
         }
     }
 

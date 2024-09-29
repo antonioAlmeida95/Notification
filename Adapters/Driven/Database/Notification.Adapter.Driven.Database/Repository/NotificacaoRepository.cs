@@ -17,7 +17,7 @@ public class NotificacaoRepository (NotificacaoContext context) : IDisposable,
     }
 
     public async Task<Notificacao?> ObterNotificacaoPorFiltrosAsync(Expression<Func<Notificacao, bool>> predicate,
-        bool track = false) => await Query(predicate, track: track).FirstOrDefaultAsync();
+        bool track = false) => await Query(predicate, track: track).FirstAsync();
     
     public void Dispose() => context.Dispose();
 
