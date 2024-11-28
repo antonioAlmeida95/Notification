@@ -50,7 +50,7 @@ public class Worker : BackgroundService
                 envelope = JsonSerializer.Deserialize<Envelope>(message, jsonOptions);
                 
                 await _notificacaoWorkerService.ProcessarMensagemAsync(envelope?.Message);
-                _logger.LogInformation("Processou registro");
+                _logger.LogInformation("Processou registro {Nome}", envelope?.Message?.Nome);
                 await Task.Delay(10000, stoppingToken);
             };
             
